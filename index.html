@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduStream v2.0 | Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="logo">EduStream <span>PRO</span></div>
+            <nav>
+                <button class="nav-item active" data-view="students">Студенты</button>
+                <button class="nav-item" data-view="analytics">Аналитика</button>
+            </nav>
+            <div class="system-status">
+                <p>База данных: <span id="dbStatus">Local</span></p>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="top-bar">
+                <input type="text" id="studentSearch" placeholder="Поиск по фамилии...">
+                <div class="user-profile">Администратор</div>
+            </header>
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <h4>Всего студентов</h4>
+                    <p id="countAll">0</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Средний балл</h4>
+                    <p id="avgGrade">0.0</p>
+                </div>
+            </section>
+
+            <section class="action-panel">
+                <h3>Регистрация студента</h3>
+                <form id="studentForm">
+                    <input type="text" id="name" placeholder="Имя Фамилия" required>
+                    <input type="number" id="grade" placeholder="Оценка (1-5)" min="1" max="5" required>
+                    <button type="submit" class="btn-primary">Добавить в систему</button>
+                </form>
+            </section>
+
+            <section class="table-container">
+                <table id="studentsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>ФИО</th>
+                            <th>Успеваемость</th>
+                            <th>Статус</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentList"></tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
