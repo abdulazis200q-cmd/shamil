@@ -1,100 +1,84 @@
 :root {
-    --bg-main: #f8fafc;
-    --sidebar: #1e293b;
-    --accent: #3b82f6;
-    --success: #10b981;
-    --danger: #ef4444;
-    --white: #ffffff;
+    --glass: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --accent: #6366f1;
+    --text-main: #1e293b;
+    --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 100%);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', sans-serif; background: var(--bg-main); color: #334155; }
-
-.dashboard {
-    display: grid;
-    grid-template-columns: 260px 1fr;
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-gradient);
     min-height: 100vh;
+    color: var(--text-main);
 }
 
-/* Sidebar */
-.sidebar {
-    background: var(--sidebar);
-    color: white;
-    padding: 30px 20px;
-}
-
-.logo { font-size: 1.5rem; font-weight: 600; margin-bottom: 40px; }
-.logo span { color: var(--accent); }
-
-.nav-item {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background: transparent;
-    border: none;
-    color: #94a3b8;
-    text-align: left;
-    cursor: pointer;
-    border-radius: 8px;
-    margin-bottom: 5px;
-}
-
-.nav-item.active { background: var(--accent); color: white; }
-
-/* Main Content */
-.content { padding: 30px; overflow-y: auto; }
-
-.top-bar {
+.app-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-#studentSearch {
-    padding: 10px 20px;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    width: 300px;
-}
-
-/* Cards */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    height: 100vh;
+    padding: 20px;
     gap: 20px;
-    margin-bottom: 30px;
 }
 
-.stat-card {
-    background: var(--white);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+.glass-sidebar {
+    width: 280px;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
-.stat-card h4 { color: #64748b; font-size: 0.9rem; margin-bottom: 10px; }
-.stat-card p { font-size: 1.8rem; font-weight: 600; }
-
-/* Table */
-.table-container {
-    background: var(--white);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-}
-
-table { width: 100%; border-collapse: collapse; }
-th { text-align: left; color: #64748b; padding: 15px; border-bottom: 2px solid #f1f5f9; }
-td { padding: 15px; border-bottom: 1px solid #f1f5f9; }
-
-.status-badge {
-    padding: 4px 10px;
+.glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
     border-radius: 20px;
-    font-size: 0.8rem;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.07);
 }
 
-.good { background: #dcfce7; color: #166534; }
-.bad { background: #fee2e2; color: #991b1b; }
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
-.btn-del { color: var(--danger); cursor: pointer; border: none; background: none; }
+/* Элементы управления */
+.btn-add {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-add:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4); }
+
+/* Таблица */
+.table-wrapper { padding: 10px; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; padding: 15px; font-size: 0.85rem; color: #64748b; }
+td { padding: 15px; border-top: 1px solid rgba(0,0,0,0.05); }
+
+/* Анимация появления модалки */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+    display: none;
+    place-items: center;
+    z-index: 100;
+}
+
+.modal-content { width: 400px; padding: 30px; }
